@@ -6,7 +6,7 @@ echo "links_to_books.txt created with $final_number entries"
 echo -e "Extracting download link from the springer page \n"
 
 count=1
-echo -e "Downloading pdf links in file pdf_download_links.txt \n"
+echo -e "Extracting pdf links in file pdf_download_links.txt \n"
 head links_to_books.txt| sort -u | while read line; do { wget -qO- $line |  grep "Download this book in PDF format" | grep -o -P '(?<=href=").*(title)' | grep -o '^\S*' | sort -u | tee -a  pdf_download_links.txt; echo "$count of $final_number ";count=$(( count+1 )); };done
 to_be_downloaded=$(sort -u pdf_download_links.txt| wc -l | grep -o '^\w*')
 read -p "Press Enter if you want to download $to_be_downloaded files" ok
