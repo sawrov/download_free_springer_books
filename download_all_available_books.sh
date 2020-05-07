@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat pdf-text\(copy\ paste\) | grep -P -o '(http).*([^\s])' | sort -u > links_to_books.txt
+cat pdf_to_text | grep -P -o '(http).*([^\s])' | sort -u > links_to_books.txt
 final_number=$(wc -l links_to_books.txt | grep -o '^\w*')
 echo "links_to_books.txt created with $final_number entries"
 echo -e "Extracting download link from the springer page \n"
